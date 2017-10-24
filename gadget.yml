@@ -1,0 +1,50 @@
+spec: "0.0"
+name: gadget-spi-emu
+uuid: 256a2909-6329-4e17-8caf-a10f9a4318f9
+type: docker
+onboot:
+- name: module-loader
+  uuid: 1e4f30c4-1c4c-4994-bb28-49fa16e17c47
+  image: ""
+  directory: module-loader
+  net: ""
+  readonly: false
+  forking: false
+  command: []
+  binds: ['/sys:/sys', '/lib/modules:/lib/modules']
+  capabilities: [SYS_RAWIO, SYS_MODULE]
+  devices: []
+- name: gpio-keys
+  uuid: 7d4ede5c-8bda-4de3-a603-223e49a782a4
+  image: ""
+  directory: gpio-keys
+  net: ""
+  readonly: false
+  forking: false
+  command: []
+  binds: ['/sys:/sys', '/lib/modules:/lib/modules']
+  capabilities: [SYS_RAWIO, SYS_MODULE]
+  devices: []
+services:
+- name: ssh
+  uuid: 4149c37a-8460-4caa-8812-05a3757acc73
+  image: ""
+  directory: ssh
+  net: host
+  readonly: false
+  forking: true
+  command: []
+  binds: ['/data/saves:/root/saves', '/data/games:/root/games -p 7777:7777']
+  capabilities: []
+  devices: []
+- name: retroarch
+  uuid: dc519964-d075-4f3b-bc9a-b98907a0727e
+  image: ""
+  directory: retroarch
+  net: ""
+  readonly: false
+  forking: false
+  command: []
+  binds: ['/data/saves:/saves', '/data/games:/games', '/proc:/host/proc']
+  capabilities: [SYS_TTY_CONFIG, SYS_RAWIO]
+  devices: [/dev/fb0, /dev/tty0, /dev/tty2, /dev/snd, /dev/input]

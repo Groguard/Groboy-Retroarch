@@ -1,0 +1,70 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "nextthing,crumb", "nextthing,gr8";
+
+    fragment@0 {
+        target-path = "/";
+        __overlay__ {
+            groboy-buttons {
+                compatible = "gpio-keys";
+                autorepeat;
+                #address-cells = <1>;
+                #size-cells = <0>;
+
+                // define buttons
+                button@00 {
+                    label = "GPIO up";
+                    linux,code = <103>;
+                    gpios = <&xio 0 1>;
+                };
+                button@01 {
+                    label = "GPIO left";
+                    linux,code = <105>;
+                    gpios = <&xio 1 1>; // pin 0.1, active_low
+                };
+                button@02 {
+                    label = "GPIO right";
+                    linux,code = <106>;
+                    gpios = <&xio 2 1>; // pin 0.2, active_low
+                };
+                button@03 {
+                    label = "GPIO down";
+                    linux,code = <108>;
+                    gpios = <&xio 3 1>; // pin 0.3, active_low
+                };
+                button@04 {
+                    label = "GPIO Key b But1";
+                    linux,code = <44>;
+					gpios = <&xio 4 1>; // pin 0.4, active_low
+				};
+				button@05 {
+					label = "GPIO Key a But2";
+                    linux,code = <30>;
+					gpios = <&xio 5 1>; // pin 0.5, active_low
+				};
+				button@06 {
+					label = "GPIO Key y But4";
+                    linux,code = <45>;
+					gpios = <&xio 6 1>; // pin 0.6, active_low
+				};
+				button@07 {
+					label = "GPIO Key x But3";
+                    linux,code = <31>;
+					gpios = <&xio 7 1>; // pin 0.7, active_low
+				};
+				button@10 {
+                    label = "GPIO Key select selectBut";
+                    linux,code = <28>;
+                    gpios = <&xio 8 1>; // pin 1.0, active_low
+				};
+				button@11 {
+					label = "GPIO Key start StartBut";
+                    linux,code = <54>;
+					gpios = <&xio 9 1>; // pin 1.1, active_low
+				};
+            };
+        };
+    };
+};
